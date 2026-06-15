@@ -6,6 +6,7 @@ from routes.auth.auth_routes import auth
 from database.room_model import Room
 from database.device_model import Device
 from routes.rooms.room_routes import rooms
+from routes.devices.device_routes import devices
 
 
 
@@ -17,6 +18,7 @@ db.init_app(app)
 
 app.register_blueprint(auth)
 app.register_blueprint(rooms)
+app.register_blueprint(devices)
 
 @app.route("/")
 def home():
