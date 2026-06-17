@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request
 from database.room_model import Room
 from database.db import db
+from flask import redirect, url_for
 
 rooms = Blueprint("rooms", __name__)
 
@@ -24,3 +25,13 @@ def view_rooms():
     "rooms.html",
     rooms=all_rooms
 )
+    
+@rooms.route("/delete_room/<int:id>")
+def delete_room(id):
+
+    room = Room.query.get(id)
+
+    db.session.delete(room)
+    db.session.commit()
+
+    return redirect(url_for("rooms.view_rooms"))   

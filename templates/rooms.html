@@ -23,6 +23,7 @@
             <tr>
                 <th>ID</th>
                 <th>Room Name</th>
+                <th>Action</th>
             </tr>
 
             {% for room in rooms %}
@@ -30,6 +31,13 @@
             <tr>
                 <td>{{ room.id }}</td>
                 <td>{{ room.room_name }}</td>
+
+                <td>
+                    <a href="/delete_room/{{ room.id }}"
+                    class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+                </td>
             </tr>
 
             {% endfor %}

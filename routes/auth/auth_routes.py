@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from database.models import User
 from database.db import db
 from flask import Blueprint, render_template
+from database.room_model import Room
+from database.device_model import Device
 
 auth = Blueprint("auth", __name__)
 
@@ -48,4 +50,19 @@ def register():
 
 @auth.route("/dashboard")
 def dashboard():
-    return render_template("dashboard.html")
+
+    total_rooms = Room.query.count()
+
+    total_devices = Device.query.count()
+
+    devices_on = Device.query.filter_by(status="ON").count()
+
+    devices_off = Device.query.filter_by(status="OFF").count()
+
+    return render_template(
+        "dashboard.html",
+        total_rooms=total_rooms,
+        total_devices=total_devices,
+        devices_on=devices_on,
+        devices_off=devices_off
+    )

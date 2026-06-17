@@ -49,3 +49,13 @@ def toggle_device(id):
     db.session.commit()
 
     return redirect(url_for("devices.view_devices"))
+
+@devices.route("/delete_device/<int:id>")
+def delete_device(id):
+
+    device = Device.query.get(id)
+
+    db.session.delete(device)
+    db.session.commit()
+
+    return redirect(url_for("devices.view_devices"))

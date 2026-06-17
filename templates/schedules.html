@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Device Scheduling</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <h2>Device Scheduling</h2>
+
+    <form method="POST">
+
+        <div class="mb-3">
+            <label>Device</label>
+
+            <select name="device_id" class="form-control">
+
+                {% for device in devices %}
+
+                <option value="{{ device.id }}">
+                    {{ device.device_name }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Action</label>
+
+            <select name="action" class="form-control">
+                <option value="ON">ON</option>
+                <option value="OFF">OFF</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Time</label>
+            <input type="time"
+                   name="schedule_time"
+                   class="form-control">
+        </div>
+
+        <button class="btn btn-primary">
+            Save Schedule
+        </button>
+
+    </form>
+    <hr>
+
+<h3>Saved Schedules</h3>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>ID</th>
+        <th>Device ID</th>
+        <th>Action</th>
+        <th>Time</th>
+    </tr>
+
+    {% for schedule in schedules %}
+
+    <tr>
+        <td>{{ schedule.id }}</td>
+        <td>{{ schedule.device_id }}</td>
+        <td>{{ schedule.action }}</td>
+        <td>{{ schedule.schedule_time }}</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>

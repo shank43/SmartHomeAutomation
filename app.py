@@ -7,6 +7,8 @@ from database.room_model import Room
 from database.device_model import Device
 from routes.rooms.room_routes import rooms
 from routes.devices.device_routes import devices
+from database.schedule_model import Schedule
+from routes.schedules.schedule_routes import schedules
 
 
 
@@ -19,6 +21,7 @@ db.init_app(app)
 app.register_blueprint(auth)
 app.register_blueprint(rooms)
 app.register_blueprint(devices)
+app.register_blueprint(schedules)
 
 @app.route("/")
 def home():

@@ -39,10 +39,15 @@
 
           <td>
               <a href="/toggle_device/{{ device.id }}"
-                class="btn btn-warning">
+                class="btn btn-warning btn-sm">
                   Toggle
               </a>
-          </td>
+
+              <a href="/delete_device/{{ device.id }}"
+                class="btn btn-danger btn-sm">
+                  Delete
+              </a>
+                        </td>
           </tr>
 
           {% endfor %}
