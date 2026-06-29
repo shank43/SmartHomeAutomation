@@ -9,7 +9,7 @@ from routes.rooms.room_routes import rooms
 from routes.devices.device_routes import devices
 from database.schedule_model import Schedule
 from routes.schedules.schedule_routes import schedules
-
+from scheduler import scheduler, run_schedules
 
 
 app = Flask(__name__)
@@ -29,6 +29,22 @@ def home():
 
 with app.app_context():
     db.create_all()
+    
+    
+
+def scheduled_job():
+
+    with app.app_context():
+
+        run_schedules()
+        
+scheduler.add_job(
+    scheduled_job,
+    "interval",
+    minutes=1
+)     
+     
+scheduler.start()
 
 if __name__ == "__main__":
     app.run(debug=True)

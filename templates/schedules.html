@@ -59,7 +59,8 @@
 
     <tr>
         <th>ID</th>
-        <th>Device ID</th>
+        <th>Device</th>
+        <th>Room</th>
         <th>Action</th>
         <th>Time</th>
     </tr>
@@ -68,7 +69,8 @@
 
     <tr>
         <td>{{ schedule.id }}</td>
-        <td>{{ schedule.device_id }}</td>
+        <td>{{ schedule.device.device_name }}</td>
+        <td>{{ schedule.device.room.room_name }}</td>
         <td>{{ schedule.action }}</td>
         <td>{{ schedule.schedule_time }}</td>
     </tr>

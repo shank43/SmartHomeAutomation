@@ -10,3 +10,9 @@ class Device(db.Model):
     db.ForeignKey('room.id'),
     nullable=False
 )
+    schedules = db.relationship(
+    "Schedule",
+    backref="device",
+    lazy=True
+)
+    
