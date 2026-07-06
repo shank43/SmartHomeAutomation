@@ -1,58 +1,453 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Smart Home Dashboard</title>
+{% extends "base.html" %}
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+{% block content %}
 
-<body>
+<!-- Hero Section -->
 
-<div class="container mt-5">
+<div class="dashboard-header mb-4">
 
-    <h1 class="mb-4">Smart Home Dashboard</h1>
+    <div class="row align-items-center">
 
-    <div class="row">
+        <div class="col-md-8">
 
-        <div class="col-md-3">
-            <div class="card text-center">
-                <div class="card-body">
-                    <h5>Total Rooms</h5>
-                    <h2>{{ total_rooms }}</h2>
-                </div>
-            </div>
+            <h1 class="fw-bold">
+
+                🏠 Smart Home Automation
+
+            </h1>
+
+            <h4>
+
+                Welcome Back,
+
+                <span class="text-warning">
+
+                    {{ username }}
+
+                </span>
+
+                👋
+
+            </h4>
+
+            <p>
+
+                Monitor and control every smart device from one place.
+
+            </p>
+
         </div>
 
-        <div class="col-md-3">
-            <div class="card text-center">
-                <div class="card-body">
-                    <h5>Total Devices</h5>
-                    <h2>{{ total_devices }}</h2>
-                </div>
-            </div>
-        </div>
+        <div class="col-md-4 text-end">
 
-        <div class="col-md-3">
-            <div class="card text-center">
-                <div class="card-body">
-                    <h5>Devices ON</h5>
-                    <h2>{{ devices_on }}</h2>
-                </div>
-            </div>
-        </div>
+            <h2 id="liveTime"></h2>
 
-        <div class="col-md-3">
-            <div class="card text-center">
-                <div class="card-body">
-                    <h5>Devices OFF</h5>
-                    <h2>{{ devices_off }}</h2>
-                </div>
-            </div>
+            <h5 id="liveDate"></h5>
+
         </div>
 
     </div>
 
 </div>
 
-</body>
-</html>
+<!-- Statistics -->
+
+<div class="row g-4 mb-4">
+
+    <div class="col-md-3">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <div class="display-3">🏠</div>
+
+                <h5>Total Rooms</h5>
+
+                <h2 class="counter"
+                    data-target="{{ total_rooms }}">0</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card text-center">
+
+            <div class="card-body">
+
+                <div class="display-3">💡</div>
+
+                <h5>Total Devices</h5>
+
+                <h2 class="counter"
+                    data-target="{{ total_devices }}">0</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card text-center border-success">
+
+            <div class="card-body">
+
+                <div class="display-3">🟢</div>
+
+                <h5>Devices ON</h5>
+
+                <h2 class="counter"
+                    data-target="{{ devices_on }}">0</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="card text-center border-danger">
+
+            <div class="card-body">
+
+                <div class="display-3">🔴</div>
+
+                <h5>Devices OFF</h5>
+
+                <h2 class="counter"
+                    data-target="{{ devices_off }}">0</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Charts -->
+
+<div class="row mb-4">
+
+    <div class="col-lg-6">
+
+        <div class="card">
+
+            <div class="card-header bg-primary text-white">
+
+                📊 Device Status
+
+            </div>
+
+            <div class="card-body">
+
+                <div id="piechart"
+                     style="height:350px;"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+
+        <div class="card">
+
+            <div class="card-header bg-success text-white">
+
+                📈 Devices Per Room
+
+            </div>
+
+            <div class="card-body">
+
+                <div id="barchart"
+                     style="height:350px;"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Quick Controls -->
+
+<div class="card mb-4">
+
+    <div class="card-header bg-dark text-white">
+
+        ⚡ Quick Controls
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row text-center">
+
+            <div class="col-md-3 mb-3">
+
+                <a href="/rooms"
+                   class="quick-btn bg-primary">
+
+                    🏠
+
+                    <br><br>
+
+                    Rooms
+
+                </a>
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+
+                <a href="/devices"
+                   class="quick-btn bg-success">
+
+                    💡
+
+                    <br><br>
+
+                    Devices
+
+                </a>
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+
+                <a href="/schedules"
+                   class="quick-btn bg-warning">
+
+                    ⏰
+
+                    <br><br>
+
+                    Schedule
+
+                </a>
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+
+                <a href="/activity"
+                   class="quick-btn bg-info">
+
+                    📜
+
+                    <br><br>
+
+                    Activity
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Bottom -->
+
+<div class="row">
+
+    <div class="col-lg-7">
+
+        <div class="card">
+
+            <div class="card-header bg-dark text-white">
+
+                📜 Recent Activity
+
+            </div>
+
+            <div class="card-body">
+
+                {% for a in recent_activity %}
+
+                <div class="activity-item">
+
+                    <h6>
+
+                        {{ a.device.device_name }}
+
+                    </h6>
+
+                    <span class="badge bg-{% if a.action=='ON' %}success{% else %}danger{% endif %}">
+
+                        {{ a.action }}
+
+                    </span>
+
+                    <br>
+
+                    <small>
+
+                        {{ a.timestamp.strftime("%d-%m-%Y %H:%M") }}
+
+                    </small>
+
+                </div>
+
+                <hr>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-5">
+
+        <div class="card">
+
+            <div class="card-header bg-dark text-white">
+
+                🟢 System Status
+
+            </div>
+
+            <div class="card-body">
+
+                <p>🟢 Database Connected</p>
+
+                <p>🟢 Server Running</p>
+
+                <p>🟢 Scheduler Active</p>
+
+                <p>🟢 Smart Home Online</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+
+google.charts.load('current',{packages:['corechart']});
+
+google.charts.setOnLoadCallback(drawCharts);
+
+function drawCharts(){
+
+var pieData=google.visualization.arrayToDataTable([
+['Status','Count'],
+['ON',{{devices_on}}],
+['OFF',{{devices_off}}]
+]);
+
+var pieChart=new google.visualization.PieChart(
+document.getElementById('piechart')
+);
+
+pieChart.draw(pieData,{
+pieHole:0.35,
+legend:{position:'bottom'}
+});
+
+var barData=new google.visualization.DataTable();
+
+barData.addColumn('string','Room');
+
+barData.addColumn('number','Devices');
+
+{% for i in range(room_names|length) %}
+
+barData.addRow([
+"{{ room_names[i] }}",
+{{ device_counts[i] }}
+]);
+
+{% endfor %}
+
+var chart=new google.visualization.ColumnChart(
+document.getElementById('barchart')
+);
+
+chart.draw(barData,{
+legend:'none',
+colors:['#2563eb']
+});
+
+}
+
+document.querySelectorAll(".counter").forEach(counter=>{
+
+const update=()=>{
+
+const target=+counter.dataset.target;
+
+const count=+counter.innerText;
+
+const inc=Math.ceil(target/40);
+
+if(count<target){
+
+counter.innerText=count+inc;
+
+setTimeout(update,25);
+
+}
+
+else{
+
+counter.innerText=target;
+
+}
+
+};
+
+update();
+
+});
+
+function updateClock(){
+
+const now=new Date();
+
+document.getElementById("liveTime").innerHTML=
+now.toLocaleTimeString();
+
+document.getElementById("liveDate").innerHTML=
+now.toLocaleDateString(
+'en-IN',
+{
+weekday:'long',
+day:'numeric',
+month:'long',
+year:'numeric'
+});
+
+}
+
+updateClock();
+
+setInterval(updateClock,1000);
+
+</script>
+
+{% endblock %}

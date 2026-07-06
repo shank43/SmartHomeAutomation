@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-header bg-primary text-white">
+
+        <h3>Edit Room</h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <form method="POST">
+
+            <div class="mb-3">
+
+                <label class="form-label">
+
+                    Room Name
+
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    name="room_name"
+                    value="{{ room.room_name }}"
+                    required>
+
+            </div>
+
+            <button class="btn btn-success">
+
+                💾 Save Changes
+
+            </button>
+
+            <a
+                href="/rooms"
+                class="btn btn-secondary">
+
+                Cancel
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -15,4 +15,10 @@ class Device(db.Model):
     backref="device",
     lazy=True
 )
+    activities = db.relationship(
+    "Activity",
+    cascade="all, delete-orphan",
+    backref="device",
+    lazy=True
+)
     

@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow-lg">
+
+        <div class="card-header bg-warning text-dark">
+
+            <h3>
+
+                ✏️ Edit Schedule
+
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Device
+
+                    </label>
+
+                    <select
+                        name="device_id"
+                        class="form-select"
+                        required>
+
+                        {% for device in devices %}
+
+                        <option
+                            value="{{ device.id }}"
+                            {% if device.id == schedule.device_id %}selected{% endif %}>
+
+                            {{ device.device_name }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Action
+
+                    </label>
+
+                    <select
+                        name="action"
+                        class="form-select">
+
+                        <option
+                            value="ON"
+                            {% if schedule.action=="ON" %}selected{% endif %}>
+
+                            ON
+
+                        </option>
+
+                        <option
+                            value="OFF"
+                            {% if schedule.action=="OFF" %}selected{% endif %}>
+
+                            OFF
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Schedule Time
+
+                    </label>
+
+                    <input
+                        type="time"
+                        name="schedule_time"
+                        class="form-control"
+                        value="{{ schedule.schedule_time }}"
+                        required>
+
+                </div>
+
+                <button
+                    class="btn btn-success">
+
+                    💾 Update Schedule
+
+                </button>
+
+                <a
+                    href="/schedules"
+                    class="btn btn-secondary">
+
+                    Cancel
+
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+
+    Activity Log
+
+</h2>
+
+<div class="mb-3">
+
+    <a
+        href="/activity/pdf"
+        class="btn btn-danger">
+
+        📄 Download PDF Report
+
+    </a>
+
+</div>
+
+<table class="table table-bordered table-hover">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Device</th>
+
+            <th>Action</th>
+
+            <th>Source</th>
+
+            <th>Time</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for activity in activities %}
+
+        <tr>
+
+            <td>{{ activity.id }}</td>
+
+            <td>{{ activity.device.device_name }}</td>
+
+            <td>
+
+                {% if activity.action=="ON" %}
+
+                <span class="badge bg-success">
+
+                    ON
+
+                </span>
+
+                {% else %}
+
+                <span class="badge bg-danger">
+
+                    OFF
+
+                </span>
+
+                {% endif %}
+
+            </td>
+
+            <td>{{ activity.source }}</td>
+
+            <td>
+
+                {{ activity.timestamp.strftime("%d-%m-%Y %I:%M %p") }}
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

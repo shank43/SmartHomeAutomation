@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow-lg">
+
+        <div class="card-header bg-warning text-dark">
+
+            <h3>
+
+                ✏️ Edit Device
+
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Device Name
+
+                    </label>
+
+                    <input
+                        type="text"
+                        name="device_name"
+                        class="form-control"
+                        value="{{ device.device_name }}"
+                        required>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Device Type
+
+                    </label>
+
+                    <select
+                        name="device_type"
+                        class="form-select">
+
+                        <option value="Light"
+                        {% if device.device_type=="Light" %}selected{% endif %}>
+                        Light
+                        </option>
+
+                        <option value="Fan"
+                        {% if device.device_type=="Fan" %}selected{% endif %}>
+                        Fan
+                        </option>
+
+                        <option value="AC"
+                        {% if device.device_type=="AC" %}selected{% endif %}>
+                        AC
+                        </option>
+
+                        <option value="TV"
+                        {% if device.device_type=="TV" %}selected{% endif %}>
+                        TV
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Room
+
+                    </label>
+
+                    <select
+                        name="room_id"
+                        class="form-select">
+
+                        {% for room in rooms %}
+
+                        <option
+                            value="{{ room.id }}"
+                            {% if room.id==device.room_id %}selected{% endif %}>
+
+                            {{ room.room_name }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <button
+                    class="btn btn-success">
+
+                    💾 Update Device
+
+                </button>
+
+                <a
+                    href="/devices"
+                    class="btn btn-secondary">
+
+                    Cancel
+
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
