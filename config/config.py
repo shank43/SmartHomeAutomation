@@ -1,8 +1,17 @@
+import os
+
+
 class Config:
 
-    SECRET_KEY = "smarthomeautomation123"
+    SECRET_KEY = os.environ.get(
+        "SECRET_KEY",
+        "smarthomeautomation123"
+    )
 
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:8165#Sunny@localhost/smart_home"
+    SQLALCHEMY_DATABASE_URI = os.environ.get(
+        "DATABASE_URL",
+        "mysql+pymysql://root:8165#Sunny@localhost/smart_home"
+    )
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
@@ -19,4 +28,3 @@ class Config:
     MAIL_PASSWORD = ""
 
     MAIL_DEFAULT_SENDER = ""
-
