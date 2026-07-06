@@ -2,6 +2,7 @@ from flask import Flask
 from flask_mail import Mail
 
 from config.config import Config
+from flask import redirect, url_for
 
 from database.db import db
 from database.models import User
@@ -40,7 +41,7 @@ app.register_blueprint(activity)
 
 @app.route("/")
 def home():
-    return "Smart Home Automation System"
+    return redirect(url_for("auth.login"))
 
 with app.app_context():
     db.create_all()
@@ -60,6 +61,8 @@ scheduler.add_job(
 )
 
 
-if __name__ == "__main__":
+if not scheduler.running:
     scheduler.start()
+
+if __name__ == "__main__":
     app.run(debug=True)
