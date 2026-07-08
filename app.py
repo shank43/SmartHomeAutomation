@@ -55,7 +55,7 @@ def scheduled_job():
 scheduler.add_job(
     scheduled_job,
     trigger="interval",
-    seconds=10,
+    minutes=1,
     id="device_scheduler",
     replace_existing=True
 )
