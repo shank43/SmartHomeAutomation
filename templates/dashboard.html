@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<!-- Hero Section -->
+<!-- ================= HERO ================= -->
 
 <div class="dashboard-header mb-4">
 
@@ -11,9 +11,7 @@
         <div class="col-md-8">
 
             <h1 class="fw-bold">
-
                 🏠 Smart Home Automation
-
             </h1>
 
             <h4>
@@ -30,9 +28,9 @@
 
             </h4>
 
-            <p>
+            <p class="mb-0">
 
-                Monitor and control every smart device from one place.
+                Monitor and control every smart device from one dashboard.
 
             </p>
 
@@ -50,293 +48,378 @@
 
 </div>
 
-<!-- Statistics -->
+<!-- ================= COUNTERS ================= -->
 
 <div class="row g-4 mb-4">
 
-    <div class="col-md-3">
+<div class="col-md-3">
 
-        <div class="card text-center">
+<div class="card shadow">
 
-            <div class="card-body">
+<div class="card-body text-center">
 
-                <div class="display-3">🏠</div>
+<div class="display-4">🏠</div>
 
-                <h5>Total Rooms</h5>
+<h5>Total Rooms</h5>
 
-                <h2 class="counter"
-                    data-target="{{ total_rooms }}">0</h2>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="col-md-3">
-
-        <div class="card text-center">
-
-            <div class="card-body">
-
-                <div class="display-3">💡</div>
-
-                <h5>Total Devices</h5>
-
-                <h2 class="counter"
-                    data-target="{{ total_devices }}">0</h2>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="col-md-3">
-
-        <div class="card text-center border-success">
-
-            <div class="card-body">
-
-                <div class="display-3">🟢</div>
-
-                <h5>Devices ON</h5>
-
-                <h2 class="counter"
-                    data-target="{{ devices_on }}">0</h2>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="col-md-3">
-
-        <div class="card text-center border-danger">
-
-            <div class="card-body">
-
-                <div class="display-3">🔴</div>
-
-                <h5>Devices OFF</h5>
-
-                <h2 class="counter"
-                    data-target="{{ devices_off }}">0</h2>
-
-            </div>
-
-        </div>
-
-    </div>
+<h2 class="counter"
+data-target="{{ total_rooms }}">0</h2>
 
 </div>
 
-<!-- Charts -->
-
-<div class="row mb-4">
-
-    <div class="col-lg-6">
-
-        <div class="card">
-
-            <div class="card-header bg-primary text-white">
-
-                📊 Device Status
-
-            </div>
-
-            <div class="card-body">
-
-                <div id="piechart"
-                     style="height:350px;"></div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="col-lg-6">
-
-        <div class="card">
-
-            <div class="card-header bg-success text-white">
-
-                📈 Devices Per Room
-
-            </div>
-
-            <div class="card-body">
-
-                <div id="barchart"
-                     style="height:350px;"></div>
-
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </div>
 
-<!-- Quick Controls -->
+<div class="col-md-3">
 
-<div class="card mb-4">
+<div class="card shadow">
 
-    <div class="card-header bg-dark text-white">
+<div class="card-body text-center">
 
-        ⚡ Quick Controls
+<div class="display-4">💡</div>
 
-    </div>
+<h5>Total Devices</h5>
 
-    <div class="card-body">
-
-        <div class="row text-center">
-
-            <div class="col-md-3 mb-3">
-
-                <a href="/rooms"
-                   class="quick-btn bg-primary">
-
-                    🏠
-
-                    <br><br>
-
-                    Rooms
-
-                </a>
-
-            </div>
-
-            <div class="col-md-3 mb-3">
-
-                <a href="/devices"
-                   class="quick-btn bg-success">
-
-                    💡
-
-                    <br><br>
-
-                    Devices
-
-                </a>
-
-            </div>
-
-            <div class="col-md-3 mb-3">
-
-                <a href="/schedules"
-                   class="quick-btn bg-warning">
-
-                    ⏰
-
-                    <br><br>
-
-                    Schedule
-
-                </a>
-
-            </div>
-
-            <div class="col-md-3 mb-3">
-
-                <a href="/activity"
-                   class="quick-btn bg-info">
-
-                    📜
-
-                    <br><br>
-
-                    Activity
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
+<h2 class="counter"
+data-target="{{ total_devices }}">0</h2>
 
 </div>
 
-<!-- Bottom -->
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card shadow border-success">
+
+<div class="card-body text-center">
+
+<div class="display-4">🟢</div>
+
+<h5>Devices ON</h5>
+
+<h2 class="counter"
+data-target="{{ devices_on }}">0</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card shadow border-danger">
+
+<div class="card-body text-center">
+
+<div class="display-4">🔴</div>
+
+<h5>Devices OFF</h5>
+
+<h2 class="counter"
+data-target="{{ devices_off }}">0</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= FIRST ROW ================= -->
 
 <div class="row">
 
-    <div class="col-lg-7">
+<div class="col-lg-6 mb-4">
 
-        <div class="card">
+<div class="card shadow">
 
-            <div class="card-header bg-dark text-white">
+<div class="card-header bg-primary text-white">
 
-                📜 Recent Activity
+📊 Device Status
 
-            </div>
+</div>
 
-            <div class="card-body">
+<div class="card-body">
 
-                {% for a in recent_activity %}
+<div id="piechart"
+style="height:350px;"></div>
 
-                <div class="activity-item">
+</div>
 
-                    <h6>
+</div>
 
-                        {{ a.device.device_name }}
+</div>
 
-                    </h6>
+<div class="col-lg-6 mb-4">
 
-                    <span class="badge bg-{% if a.action=='ON' %}success{% else %}danger{% endif %}">
+<div class="card shadow">
 
-                        {{ a.action }}
+<div class="card-header bg-success text-white">
 
-                    </span>
+📈 Devices Per Room
 
-                    <br>
+</div>
 
-                    <small>
+<div class="card-body">
 
-                        {{ a.timestamp.strftime("%d-%m-%Y %H:%M") }}
+<div id="barchart"
+style="height:350px;"></div>
 
-                    </small>
+</div>
 
-                </div>
+</div>
 
-                <hr>
+</div>
 
-                {% endfor %}
+</div>
 
-            </div>
+<!-- ================= SECOND ROW ================= -->
 
-        </div>
+<div class="row">
 
-    </div>
+<div class="col-lg-6 mb-4">
 
-    <div class="col-lg-5">
+<div class="card shadow">
 
-        <div class="card">
+<div class="card-header bg-warning">
 
-            <div class="card-header bg-dark text-white">
+🥧 Device Type Distribution
 
-                🟢 System Status
+</div>
 
-            </div>
+<div class="card-body">
 
-            <div class="card-body">
+<div id="deviceTypeChart"
+style="height:350px;"></div>
 
-                <p>🟢 Database Connected</p>
+</div>
 
-                <p>🟢 Server Running</p>
+</div>
 
-                <p>🟢 Scheduler Active</p>
+</div>
 
-                <p>🟢 Smart Home Online</p>
+<div class="col-lg-6 mb-4">
 
-            </div>
+<div class="card shadow">
 
-        </div>
+<div class="card-header bg-info text-white">
 
-    </div>
+📈 Activity Trend
+
+</div>
+
+<div class="card-body">
+
+<div id="activityChart"
+style="height:350px;"></div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= THIRD ROW ================= -->
+
+<div class="row">
+
+<div class="col-lg-12 mb-4">
+
+<div class="card shadow">
+
+<div class="card-header bg-secondary text-white">
+
+🏠 ON Devices Per Room
+
+</div>
+
+<div class="card-body">
+
+<div id="onRoomChart"
+style="height:350px;"></div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= QUICK ACTIONS ================= -->
+
+<div class="card shadow mb-4">
+
+<div class="card-header bg-dark text-white">
+
+⚡ Quick Controls
+
+</div>
+
+<div class="card-body text-center">
+
+<a href="/rooms"
+class="btn btn-primary m-2">
+
+🏠 Rooms
+
+</a>
+
+<a href="/devices"
+class="btn btn-success m-2">
+
+💡 Devices
+
+</a>
+
+<a href="/schedules"
+class="btn btn-warning m-2">
+
+⏰ Schedules
+
+</a>
+
+<a href="/activity"
+class="btn btn-info m-2">
+
+📜 Activity
+
+</a>
+
+</div>
+
+</div>
+
+<!-- ================= BOTTOM ================= -->
+
+<div class="row">
+
+<div class="col-lg-7">
+
+<div class="card shadow">
+
+<div class="card-header bg-dark text-white">
+
+📜 Recent Activity
+
+</div>
+
+<div class="card-body">
+
+{% for a in recent_activity %}
+
+<div class="mb-3">
+
+<strong>
+
+{{ a.device.device_name }}
+
+</strong>
+
+<span class="badge bg-{% if a.action=='ON' %}success{% else %}danger{% endif %}">
+
+{{ a.action }}
+
+</span>
+
+<br>
+
+<small>
+
+{{ a.timestamp.strftime("%d-%m-%Y %H:%M") }}
+
+</small>
+
+</div>
+
+<hr>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-5">
+
+<div class="card shadow">
+
+<div class="card-header bg-dark text-white">
+
+📊 Smart Home Insights
+
+</div>
+
+<div class="card-body">
+
+<p>
+
+🏆 Most Active Device
+
+</p>
+
+<h5>
+
+{% if most_active_device %}
+
+{{ most_active_device[0] }}
+
+({{ most_active_device[1] }})
+
+{% else %}
+
+No Activity
+
+{% endif %}
+
+</h5>
+
+<hr>
+
+<p>
+
+🏠 Most Active Room
+
+</p>
+
+<h5>
+
+{% if most_active_room %}
+
+{{ most_active_room[0] }}
+
+({{ most_active_room[1] }})
+
+{% else %}
+
+No Activity
+
+{% endif %}
+
+</h5>
+
+<hr>
+
+<p>🟢 Database Connected</p>
+
+<p>🟢 Scheduler Running</p>
+
+<p>🟢 Server Online</p>
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -348,105 +431,221 @@
 
 <script>
 
-google.charts.load('current',{packages:['corechart']});
+google.charts.load('current', {
+    packages:['corechart']
+});
 
 google.charts.setOnLoadCallback(drawCharts);
 
 function drawCharts(){
 
-var pieData=google.visualization.arrayToDataTable([
-['Status','Count'],
-['ON',{{devices_on}}],
-['OFF',{{devices_off}}]
-]);
+    // ============================================
+    // Device Status Pie Chart
+    // ============================================
 
-var pieChart=new google.visualization.PieChart(
-document.getElementById('piechart')
-);
+    var pieData = google.visualization.arrayToDataTable([
+        ['Status','Count'],
+        ['ON',{{ devices_on }}],
+        ['OFF',{{ devices_off }}]
+    ]);
 
-pieChart.draw(pieData,{
-pieHole:0.35,
-legend:{position:'bottom'}
-});
+    var pieChart = new google.visualization.PieChart(
+        document.getElementById('piechart')
+    );
 
-var barData=new google.visualization.DataTable();
+    pieChart.draw(pieData,{
+        pieHole:0.45,
+        legend:{position:'bottom'},
+        chartArea:{width:'90%',height:'80%'},
+        colors:['#22c55e','#ef4444']
+    });
 
-barData.addColumn('string','Room');
+    // ============================================
+    // Devices Per Room
+    // ============================================
 
-barData.addColumn('number','Devices');
+    var roomData = new google.visualization.DataTable();
 
-{% for i in range(room_names|length) %}
+    roomData.addColumn('string','Room');
+    roomData.addColumn('number','Devices');
 
-barData.addRow([
-"{{ room_names[i] }}",
-{{ device_counts[i] }}
-]);
+    {% for i in range(room_names|length) %}
 
-{% endfor %}
+    roomData.addRow([
+        "{{ room_names[i] }}",
+        {{ device_counts[i] }}
+    ]);
 
-var chart=new google.visualization.ColumnChart(
-document.getElementById('barchart')
-);
+    {% endfor %}
 
-chart.draw(barData,{
-legend:'none',
-colors:['#2563eb']
-});
+    var roomChart = new google.visualization.ColumnChart(
+        document.getElementById("barchart")
+    );
+
+    roomChart.draw(roomData,{
+        legend:'none',
+        colors:['#2563eb'],
+        chartArea:{width:'80%',height:'70%'},
+        hAxis:{title:'Rooms'},
+        vAxis:{title:'Devices',minValue:0}
+    });
+
+    // ============================================
+    // Device Type Distribution
+    // ============================================
+
+    var typeData = new google.visualization.DataTable();
+
+    typeData.addColumn('string','Type');
+    typeData.addColumn('number','Count');
+
+    {% for i in range(device_types|length) %}
+
+    typeData.addRow([
+        "{{ device_types[i] }}",
+        {{ device_type_counts[i] }}
+    ]);
+
+    {% endfor %}
+
+    var typeChart = new google.visualization.PieChart(
+        document.getElementById("deviceTypeChart")
+    );
+
+    typeChart.draw(typeData,{
+        pieHole:0.35,
+        legend:{position:'bottom'},
+        chartArea:{width:'90%',height:'80%'}
+    });
+
+    // ============================================
+    // Activity Trend
+    // ============================================
+
+    var trendData = new google.visualization.DataTable();
+
+    trendData.addColumn('string','Date');
+    trendData.addColumn('number','Activities');
+
+    {% for i in range(trend_dates|length) %}
+
+    trendData.addRow([
+        "{{ trend_dates[i] }}",
+        {{ trend_counts[i] }}
+    ]);
+
+    {% endfor %}
+
+    var trendChart = new google.visualization.LineChart(
+        document.getElementById("activityChart")
+    );
+
+    trendChart.draw(trendData,{
+        legend:'none',
+        curveType:'function',
+        colors:['#7c3aed'],
+        chartArea:{width:'80%',height:'70%'},
+        hAxis:{title:'Date'},
+        vAxis:{title:'Activity'}
+    });
+
+    // ============================================
+    // ON Devices Per Room
+    // ============================================
+
+    var onRoomData = new google.visualization.DataTable();
+
+    onRoomData.addColumn('string','Room');
+    onRoomData.addColumn('number','ON Devices');
+
+    {% for i in range(on_room_names|length) %}
+
+    onRoomData.addRow([
+        "{{ on_room_names[i] }}",
+        {{ on_room_counts[i] }}
+    ]);
+
+    {% endfor %}
+
+    var onRoomChart = new google.visualization.BarChart(
+        document.getElementById("onRoomChart")
+    );
+
+    onRoomChart.draw(onRoomData,{
+        legend:'none',
+        colors:['#f59e0b'],
+        chartArea:{width:'75%',height:'70%'}
+    });
 
 }
+
+// ============================================
+// Counter Animation
+// ============================================
 
 document.querySelectorAll(".counter").forEach(counter=>{
 
-const update=()=>{
+    const update=()=>{
 
-const target=+counter.dataset.target;
+        const target=+counter.dataset.target;
 
-const count=+counter.innerText;
+        const count=+counter.innerText;
 
-const inc=Math.ceil(target/40);
+        const inc=Math.ceil(target/40);
 
-if(count<target){
+        if(count<target){
 
-counter.innerText=count+inc;
+            counter.innerText=count+inc;
 
-setTimeout(update,25);
+            setTimeout(update,25);
 
-}
+        }
 
-else{
+        else{
 
-counter.innerText=target;
+            counter.innerText=target;
 
-}
+        }
 
-};
+    };
 
-update();
+    update();
 
 });
+
+// ============================================
+// Live Clock
+// ============================================
 
 function updateClock(){
 
-const now=new Date();
+    const now=new Date();
 
-document.getElementById("liveTime").innerHTML=
-now.toLocaleTimeString();
+    document.getElementById("liveTime").innerHTML=
+        now.toLocaleTimeString();
 
-document.getElementById("liveDate").innerHTML=
-now.toLocaleDateString(
-'en-IN',
-{
-weekday:'long',
-day:'numeric',
-month:'long',
-year:'numeric'
-});
+    document.getElementById("liveDate").innerHTML=
+        now.toLocaleDateString(
+            'en-IN',
+            {
+                weekday:'long',
+                day:'numeric',
+                month:'long',
+                year:'numeric'
+            }
+        );
 
 }
 
 updateClock();
 
 setInterval(updateClock,1000);
+
+// ============================================
+// Responsive Charts
+// ============================================
+
+window.onresize = drawCharts;
 
 </script>
 

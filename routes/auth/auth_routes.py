@@ -100,18 +100,27 @@ def dashboard():
     if "user_id" not in session:
 
         flash("Please login first.", "warning")
-
         return redirect(url_for("auth.login"))
 
+    # ==========================
+    # Dashboard Counters
+    # ==========================
+
     total_rooms = Room.query.count()
+
     total_devices = Device.query.count()
 
     devices_on = Device.query.filter_by(status="ON").count()
+
     devices_off = Device.query.filter_by(status="OFF").count()
 
     total_schedules = Schedule.query.count()
 
     total_activity = Activity.query.count()
+
+    # ==========================
+    # Devices Per Room
+    # ==========================
 
     rooms = Room.query.all()
 
@@ -121,39 +130,134 @@ def dashboard():
     for room in rooms:
 
         room_names.append(room.room_name)
+
         device_counts.append(len(room.devices))
 
-    recent_activity = Activity.query.order_by(
-        Activity.timestamp.desc()
-    ).limit(5).all()
+    # ==========================
+    # Device Type Distribution
+    # ==========================
 
-    # Most Active Device
-
-    most_active_device = (
+    device_type_data = (
         db.session.query(
-            Device.device_name,
-            db.func.count(Activity.id).label("count")
+            Device.device_type,
+            db.func.count(Device.id)
         )
-        .select_from(Device)
-        .join(Activity, Activity.device_id == Device.id)
-        .group_by(Device.id)
-        .order_by(db.desc("count"))
-        .first()
+        .group_by(Device.device_type)
+        .all()
     )
 
+    device_types = []
+    device_type_counts = []
+
+    for dtype, count in device_type_data:
+
+        device_types.append(dtype)
+
+        device_type_counts.append(count)
+
+    # ==========================
+    # ON Devices Per Room
+    # ==========================
+
+    on_room_names = []
+    on_room_counts = []
+
+    for room in rooms:
+
+        on_room_names.append(room.room_name)
+
+        count = Device.query.filter_by(
+            room_id=room.id,
+            status="ON"
+        ).count()
+
+        on_room_counts.append(count)
+
+    # ==========================
+    # Activity Trend (Last 7 Days)
+    # ==========================
+
+    from datetime import datetime, timedelta
+
+    trend_dates = []
+
+    trend_counts = []
+
+    for i in range(6, -1, -1):
+
+        day = datetime.utcnow().date() - timedelta(days=i)
+
+        count = Activity.query.filter(
+            db.func.date(Activity.timestamp) == day
+        ).count()
+
+        trend_dates.append(day.strftime("%d %b"))
+
+        trend_counts.append(count)
+
+    # ==========================
+    # Recent Activity
+    # ==========================
+
+    recent_activity = (
+        Activity.query
+        .order_by(Activity.timestamp.desc())
+        .limit(5)
+        .all()
+    )
+
+    # ==========================
+    # Most Active Device
+    # ==========================
+
+    most_active_device = (
+
+        db.session.query(
+
+            Device.device_name,
+
+            db.func.count(Activity.id).label("count")
+
+        )
+
+        .select_from(Device)
+
+        .join(Activity, Activity.device_id == Device.id)
+
+        .group_by(Device.id)
+
+        .order_by(db.desc("count"))
+
+        .first()
+
+    )
+
+    # ==========================
     # Most Active Room
+    # ==========================
 
     most_active_room = (
+
         db.session.query(
+
             Room.room_name,
+
             db.func.count(Activity.id).label("count")
+
         )
+
         .select_from(Room)
+
         .join(Device, Device.room_id == Room.id)
+
         .join(Activity, Activity.device_id == Device.id)
+
         .group_by(Room.id)
+
         .order_by(db.desc("count"))
+
         .first()
+
     )
 
     return render_template(
@@ -163,20 +267,38 @@ def dashboard():
         username=session["username"],
 
         total_rooms=total_rooms,
+
         total_devices=total_devices,
+
         devices_on=devices_on,
+
         devices_off=devices_off,
 
         total_schedules=total_schedules,
+
         total_activity=total_activity,
 
         room_names=room_names,
+
         device_counts=device_counts,
 
         recent_activity=recent_activity,
 
         most_active_device=most_active_device,
-        most_active_room=most_active_room
+
+        most_active_room=most_active_room,
+
+        device_types=device_types,
+
+        device_type_counts=device_type_counts,
+
+        trend_dates=trend_dates,
+
+        trend_counts=trend_counts,
+
+        on_room_names=on_room_names,
+
+        on_room_counts=on_room_counts
 
     )
 
